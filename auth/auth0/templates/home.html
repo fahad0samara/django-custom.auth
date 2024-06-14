@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome, {% if user.is_authenticated %}{{ user.username }}{% else %}Guest{% endif %}</h1>
+        {% if user.is_authenticated %}
+            <p class="lead">You are logged in.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
+        {% else %}
+            <p class="lead">Please login or register to continue.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+            <a class="btn btn-secondary btn-lg" href="{% url 'register' %}" role="button">Register</a>
+        {% endif %}
+    </div>
+{% endblock %}
