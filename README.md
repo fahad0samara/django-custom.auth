@@ -1,6 +1,4 @@
-Certainly! Let's expand the README template with more detailed explanations and sections:
 
----
 
 # custom authentication
 
