@@ -3,15 +3,42 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <div class="jumbotron text-center">
-        <h1 class="display-4">Welcome, {% if user.is_authenticated %}{{ user.username }}{% else %}Guest{% endif %}</h1>
-        {% if user.is_authenticated %}
-            <p class="lead">You are logged in.</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
-        {% else %}
-            <p class="lead">Please login or register to continue.</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
-            <a class="btn btn-secondary btn-lg" href="{% url 'register' %}" role="button">Register</a>
-        {% endif %}
-    </div>
+    <h1>Welcome to My Site</h1>
+    {% if user %}
+        <h2>Hello, {{ user.username }}!</h2>
+        <p>We're glad to see you back. Here's what you can do:</p>
+        <ul>
+            <li><a href="{% url 'user_profile' %}">View your profile</a></li>
+            <li><a href="#">Check your messages</a></li>
+            <li><a href="#">Update your settings</a></li>
+        </ul>
+        <p><a href="{% url 'logout' %}" class="button">Logout</a></p>
+    {% else %}
+        <div>
+            <p>Explore our site and see what we have to offer:</p>
+            <p>If you are new here, please <a href="{% url 'register' %}">register</a> to join our community.</p>
+            <p>If you already have an account, please <a href="{% url 'login' %}">login</a> to access your dashboard.</p>
+        </div>
+    {% endif %}
+
+    <h2>About Our Project</h2>
+    <p>This project is designed to help you manage your tasks efficiently and stay organized. Here are some of the features you can enjoy:</p>
+    <ul>
+        <li><strong>Task Management:</strong> Create, update, and delete tasks to keep track of your to-dos.</li>
+        <li><strong>Messaging System:</strong> Communicate with other users via our built-in messaging system.</li>
+        <li><strong>User Profiles:</strong> Update your profile information and view others' profiles.</li>
+        <li><strong>Customizable Settings:</strong> Adjust your account settings to suit your preferences.</li>
+    </ul>
+
+    <h2>Getting Started</h2>
+    <p>If you are new to our site, follow these steps to get started:</p>
+    <ol>
+        <li><a href="{% url 'register' %}">Register an account</a> to join our community.</li>
+        <li>After registration, <a href="{% url 'login' %}">log in</a> with your new account.</li>
+        <li>Explore your profile and update your settings.</li>
+        <li>Start managing your tasks and connecting with others.</li>
+    </ol>
+
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need assistance, feel free to <a href="#">contact our support team</a>.</p>
 {% endblock %}

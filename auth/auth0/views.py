@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import CustomUser
 from .forms import CustomUserCreationForm, LoginForm
 
+
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -42,3 +43,12 @@ def home(request):
     else:
         user = None
     return render(request, 'home.html', {'user': user})
+
+
+def user_profile(request):
+    user_id = request.session.get('user_id')
+    if user_id:
+        user = CustomUser.objects.get(id=user_id)
+        return render(request, 'user_profile.html', {'user': user})
+    else:
+        return redirect('login')
